@@ -22,7 +22,12 @@ module.exports = (app) => {
 
   // GET ALL
   app.get('/api/workouts', async (req, res) => {
-    try {} catch (err) {
+    try {
+      const workout = await Workout.find().sort('name');
+
+      res.status(200).json(workout);
+
+    } catch (err) {
       res.status(500).json(err);
     }
   });
