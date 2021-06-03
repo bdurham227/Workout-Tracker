@@ -1,6 +1,8 @@
 // require models 
 // require router
 const mongoose = require('mongoose');
+const { Workout } = require('../models/Workout');
+const { Exercise } = require('../models/Exercises');
 
 
 
@@ -15,32 +17,50 @@ const mongoose = require('mongoose');
 // additionally use aggregate functions
 
 
-// GET ALL
 
+module.exports = (app) => {
 
-
-
-// GET ONE
-
-
-
+  // GET ALL
+  app.get('/api/workouts', async (req, res) => {
+    try {} catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 // POST create a workout
 
+app.post('/api/workouts', async (req, res) => {
+  try {} catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+// GET range
+app.get('/api/workouts/range', async (req, res) => {
+  try {} catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// post range
+app.post('/api/workouts/range', async (req, res) => {
+  try {} catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 
 // PUT update a workout
 
-
-
-
-// DELETE delete a workout
-
-
-
-
-
+app.put('/api/workouts/:id', async (req, res) => {
+  try {} catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 
@@ -48,6 +68,7 @@ const mongoose = require('mongoose');
 
 
 
+}
 
 
 
@@ -56,4 +77,12 @@ const mongoose = require('mongoose');
 
 
 
-// export router
+
+
+
+
+
+
+
+
+
