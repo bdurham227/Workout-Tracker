@@ -1,8 +1,10 @@
 // require models 
 // require router
+const router = require('express').Router();
 const mongoose = require('mongoose');
-const { Workout } = require('../models/Workout');
-const { Exercise } = require('../models/Exercises');
+const Workout = require('../models/Workout');
+
+// const { Exercise } = require('../models/Exercises');
 
 
 
@@ -18,14 +20,28 @@ const { Exercise } = require('../models/Exercises');
 
 
 
-module.exports = (app) => {
+
 
   // GET ALL
-  app.get('/api/workouts', async (req, res) => {
+  router.get('/api/workouts', async (req, res) => {
     try {
-      const workout = await Workout.find().sort('name');
+      const workouts = await Workout.aggregate([
+        {
+          $addFields: {
+            totalDuration: {$sum: "$exercises.duration"}
+          }
+        }
+      ]);
+      // workouts.forEach(workout => {
+      //   let totalD = 0;
+      //   workouts.exercises.forEach(e => {
+      //     console.log(e);
+      //     totalD += e.duration;
+      //   });
+      //   workout.totalDuration = totalD;
+      // });
 
-      res.status(200).json(workout);
+      res.status(200).json(workouts);
 
     } catch (err) {
       res.status(500).json(err);
@@ -34,25 +50,53 @@ module.exports = (app) => {
 
 // POST create a workout
 
-app.post('/api/workouts', async (req, res) => {
-  try {} catch (err) {
+router.post('/api/workouts', async ({ body }, res) => {
+  try {
+    const workout = await Workout.create(body);
+
+    res.status(200).json(workout);
+
+
+
+  } catch (err) {
     res.status(500).json(err);
   }
 });
 
 
-
-
 // GET range
-app.get('/api/workouts/range', async (req, res) => {
-  try {} catch (err) {
+router.get('/api/workouts/range', async (req, res) => {
+  try {
+    const workout = await Workout.aggregate([
+      {
+        $addFields: {
+          duration: {$sum: "$exercises.duration"}
+        }
+      }
+    ])
+    .limit(7)
+    .sort("day")
+    // .select( "date", "exercises");
+
+    res.status(200).json(workout);
+
+
+  } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // post range
-app.post('/api/workouts/range', async (req, res) => {
-  try {} catch (err) {
+router.post('/api/workouts/range', async ({ body }, res) => {
+  try {
+    const workout = await Workout.create(body);
+  
+
+    res.status(200).json(workout);
+
+
+
+  } catch (err) {
     res.status(500).json(err);
   }
 });
@@ -61,19 +105,36 @@ app.post('/api/workouts/range', async (req, res) => {
 
 // PUT update a workout
 
-app.put('/api/workouts/:id', async (req, res) => {
-  try {} catch (err) {
+router.put('/api/workouts/:id', async ({ body, params }, res) => {
+  try {
+    const workout = await Workout.findByIdAndUpdate(params.id, 
+      {
+        $push: { exercises: body }
+      },
+  
+      {new: true });
+
+      const result = await workout.save();
+      console.log(result);
+
+      res.status(200).json(workout);
+
+
+  } catch (err) {
     res.status(500).json(err);
   }
 });
 
 
+module.exports = router;
 
 
 
 
 
-}
+
+
+
 
 
 
