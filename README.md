@@ -13,7 +13,7 @@
 -----
 
 ## Description
-The TechBlog Application is built upon using Model View Controllers. The principal foundation of Models as database tables, Views as template that are rendered to the front-end, and lastly, Controllers as the backend logic that connects the backend to the frontend. In harmony, MVC applications create a fullstack application. This application aims to be a representation of that fullstack web development methodology. My process for building this app was first to create the database, models and pre-populate the database with some seed data. Next, I began to build out some simple create, read, update, destroy routes and tested them all in Insomnia before creating the Views templates to dyanmically render the data stored in the backend to the client on the frontend. I would love to rebuild this application again from scratch for more practice.
+The Fitness Tracker Application is a RESTful API built upon Express.Js and Mongoose that gives the user the feeling and control of a real Exercise tracking application. The app enables the user to add new workouts that they have completed to track the name ,types, weight, number of sets/reps, and duration of their workouts. This mini-project was a greate exercise in practicing and reiterating the principles of CRUD and following the Model View Controller methodology. Although, a template engine to dynamically render the front-end to the user was not used here, in future developments I would like to add Handlebars, Pug or even React to render out the front-end framework.
 
  -----
 
@@ -62,22 +62,29 @@ The TechBlog Application is built upon using Model View Controllers. The princip
 
 
 
-Screenshot of Application:
+Screenshots of Application:
 --
-![Screenshot](public/images/tbhomepage.png)
+Add a new exercise to your Fitness Tracker: 
 
+![Screenshot](img/addexercise.png)
 
-![Screenshot](public/images/tbdashboard.png)
+Fill out the details of your workout:
 
+![Screenshot](img/exerciseform.png)
 
-![Screenshot](public/images/tblogin.png)
+See your hardwork:
 
-![Screenshot](public/images/tbsignup.png)
+![Screenshot](img/completedexercise.png)
+
+Dashboard of your Exercise Statistics:
+
+![Screenshot](img/exercisestats.png)
 
 
 
 Visit the Repo: 
-[Github]**<https://github.com/bdurham227/Tech-Blog>**
+--
+[Github]**<https://github.com/bdurham227/Workout-Tracker>**
 
    
 
