@@ -12,8 +12,8 @@ const Workout = require('../models/Workout');
         {
           $addFields: {
             totalDuration: {$sum: "$exercises.duration"}
-          }
-        }
+          },
+        },
       ]);
     
 
@@ -24,34 +24,18 @@ const Workout = require('../models/Workout');
     }
   });
 
-// POST create a workout
-
-router.post('/api/workouts', async (req, res) => {
-  try {
-    const workout = await Workout.create(req.body);
-
-    res.status(200).json(workout);
-
-
-
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-
-// GET range
+  // GET range
 router.get('/api/workouts/range', async (req, res) => {
   try {
     const workout = await Workout.aggregate([
       {
         $addFields: {
-          duration: {$sum: "$exercises.duration"}
+          totalDuration: { $sum: "$exercises.duration" }
         }
       }
     ])
     .limit(7)
-    .sort("day")
+    .sort({ day: 1 })
     // .select( "date", "exercises");
 
     res.status(200).json(workout);
@@ -62,11 +46,11 @@ router.get('/api/workouts/range', async (req, res) => {
   }
 });
 
-// post range
-router.post('/api/workouts/range', async (req, res) => {
+// POST create a workout
+
+router.post('/api/workouts/', async (req, res) => {
   try {
     const workout = await Workout.create(req.body);
-  
 
     res.status(200).json(workout);
 
@@ -76,6 +60,23 @@ router.post('/api/workouts/range', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+
+// post range
+// router.post('/api/workouts/range', async (req, res) => {
+//   try {
+//     const workout = await Workout.create(req.body);
+  
+
+//     res.status(200).json(workout);
+
+
+
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 
 
@@ -88,11 +89,11 @@ router.put('/api/workouts/:id', async (req, res) => {
         $push: { exercises: req.body }
       },
   
-      {new: true,
+      {  new: true,
       runValidators: true });
 
-      const result = await workout.save();
-      console.log(result);
+      // const result = await workout.save();
+      // console.log(result);
 
       res.status(200).json(workout);
 
