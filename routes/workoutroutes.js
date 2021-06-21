@@ -26,9 +26,9 @@ const Workout = require('../models/Workout');
 
 // POST create a workout
 
-router.post('/api/workouts', async ({ body }, res) => {
+router.post('/api/workouts', async (req, res) => {
   try {
-    const workout = await Workout.create(body);
+    const workout = await Workout.create(req.body);
 
     res.status(200).json(workout);
 
