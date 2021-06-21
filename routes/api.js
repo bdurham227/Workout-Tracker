@@ -1,24 +1,7 @@
 // require models 
 // require router
 const router = require('express').Router();
-const mongoose = require('mongoose');
 const Workout = require('../models/Workout');
-
-// const { Exercise } = require('../models/Exercises');
-
-
-
-// build out CRUD & endpoints
-
-// viewers should be able to view the combined weight fromthe past seven workouts .sort().select()
-
-// viewers should be able to the see the total duration of each workout from the past seven workouts
-
-// can use different read methods to be able to see and sort the selected data
-
-// additionally use aggregate functions
-
-
 
 
 
@@ -32,14 +15,7 @@ const Workout = require('../models/Workout');
           }
         }
       ]);
-      // workouts.forEach(workout => {
-      //   let totalD = 0;
-      //   workouts.exercises.forEach(e => {
-      //     console.log(e);
-      //     totalD += e.duration;
-      //   });
-      //   workout.totalDuration = totalD;
-      // });
+    
 
       res.status(200).json(workouts);
 
