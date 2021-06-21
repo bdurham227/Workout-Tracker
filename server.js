@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const path = require('path');
-const router = require('./routes/workout-routes');
+
 
 const app = express();
 const PORT = process.env.PORT || 3002;
