@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const routes = require('./routes');
 
 
 
@@ -25,12 +26,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.use(require("./routes/workoutroutes"));
-app.use(require("./routes/html-routes"));
+// app.use(require("./routes/workoutroutes"));
+// app.use(require("./routes/html-routes"));
+app.use(routes);
 
 
 
-
+ 
 
 
 

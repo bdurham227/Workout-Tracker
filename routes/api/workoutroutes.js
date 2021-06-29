@@ -1,12 +1,12 @@
 // require models 
 // require router
 const router = require('express').Router();
-const Workout = require('../models/Workout');
+const Workout = require('../../models/Workout');
 
 
 
   // GET ALL
-  router.get('/api/workouts', async (req, res) => {
+  router.get('/', async (req, res) => {
     try {
       const workouts = await Workout.aggregate([
         {
@@ -25,7 +25,7 @@ const Workout = require('../models/Workout');
   });
 
   // GET range
-router.get('/api/workouts/range', async (req, res) => {
+router.get('/range', async (req, res) => {
   try {
     const workout = await Workout.aggregate([
       {
@@ -48,7 +48,7 @@ router.get('/api/workouts/range', async (req, res) => {
 
 // POST create a workout
 
-router.post('/api/workouts/', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const workout = await Workout.create(req.body);
 
@@ -82,7 +82,7 @@ router.post('/api/workouts/', async (req, res) => {
 
 // PUT update a workout
 
-router.put('/api/workouts/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const workout = await Workout.findByIdAndUpdate(req.params.id, 
       {

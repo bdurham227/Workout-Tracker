@@ -1,8 +1,8 @@
-// const router = require('express').Router();
-// const htmlRoutes = require('./html-routes');
-// const workoutRoutes = require('./workoutroutes');
+const router = require('express').Router();
+const htmlRoutes = require('./html-routes');
+const apiRoutes = require('./api');
 
-// router.use('/', htmlRoutes);
-// router.use('/api', workoutRoutes);
+router.use('/', htmlRoutes);
+router.use('/api', apiRoutes);
 
-// modules.exports = router;
+module.exports = router;
