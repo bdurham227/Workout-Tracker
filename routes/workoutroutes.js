@@ -1,12 +1,12 @@
 // require models 
 // require router
 const router = require('express').Router();
-const Workout = require('../../models/Workout');
+const Workout = require('../models/Workout');
 
 
 
   // GET ALL
-  router.get('/', async (req, res) => {
+  router.get('/api/workouts', async (req, res) => {
     try {
       const workouts = await Workout.aggregate([
         {
@@ -24,8 +24,11 @@ const Workout = require('../../models/Workout');
     }
   });
 
+
+
+
   // GET range
-router.get('/range', async (req, res) => {
+router.get('/api/range', async (req, res) => {
   try {
     const workout = await Workout.aggregate([
       {
@@ -48,7 +51,7 @@ router.get('/range', async (req, res) => {
 
 // POST create a workout
 
-router.post('/', async (req, res) => {
+router.post('/api/workouts', async (req, res) => {
   try {
     const workout = await Workout.create(req.body);
 
@@ -61,26 +64,9 @@ router.post('/', async (req, res) => {
 
 
 
-// post range
-// router.post('/api/workouts/range', async (req, res) => {
-//   try {
-//     const workout = await Workout.create(req.body);
-  
-
-//     res.status(200).json(workout);
-
-
-
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-
-
 // PUT update a workout
 
-router.put('/:id', async (req, res) => {
+router.put('/api/workouts/:id', async (req, res) => {
   try {
     const workout = await Workout.findByIdAndUpdate(req.params.id, 
       {
@@ -100,6 +86,20 @@ router.put('/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.delete('/api/workouts/:id', async (req, res) => {
+  try {
+    const workout = await Workout.findByIdAndRemove(req.params.id);
+
+    if (!workout) res.status(400).json({ message: "No Workout with the given ID found"});
+
+    res.status(200).json(workout);
+
+
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
 
 
 module.exports = router;
