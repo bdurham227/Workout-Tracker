@@ -28,7 +28,7 @@ const Workout = require('../models/Workout');
 
 
   // GET range
-router.get('/api/range', async (req, res) => {
+router.get('/api/workouts/range', async (req, res) => {
   try {
     const workout = await Workout.aggregate([
       {

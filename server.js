@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const routes = require('./routes');
+
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -24,13 +24,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// app.use(require("./routes/workoutroutes"));
-// app.use(require("./routes/html-routes"));
-app.use(routes);
-
-
-
- 
+app.use(require("./routes/workoutroutes"));
+app.use(require("./routes/html-routes"));
 
 
 
