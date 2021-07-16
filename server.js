@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const db = require('./config/keys').mongoURI;
+const db = require('./config/keys').MONGODB_URI;
 
 const app = express();
 const PORT = process.env.PORT || 3002;
