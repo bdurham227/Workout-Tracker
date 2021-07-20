@@ -16,11 +16,12 @@ const Workout = require('../models/Workout');
           },
          
         },
-        console.log('hi')
+        
       ]);
     
 
       res.status(200).json(workouts);
+      console.log('hi')
 
     } catch (err) {
       res.status(500).json(err);
