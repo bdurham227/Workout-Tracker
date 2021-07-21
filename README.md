@@ -82,9 +82,10 @@ Dashboard of your Exercise Statistics:
 
 
 
-Visit the Repo: 
+Visit the Repo/Deployed Site: 
 --
 [Github]**<https://github.com/bdurham227/Workout-Tracker>**
+https://durham-fitness.herokuapp.com/?id=60f61f6d6c9211001564b57f
 
    
 
